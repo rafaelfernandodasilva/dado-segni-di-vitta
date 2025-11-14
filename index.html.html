@@ -32,7 +32,6 @@
     margin-top: 40px;
   }
 
-  /* Dado 3D */
   .dice {
     width: 180px;
     height: 180px;
@@ -153,7 +152,7 @@
 <div class="container">
   <div class="dice" id="dice">
     <div class="face">R$100</div>
-    <div class="face">R$150</div>
+    <div class="face">R$120</div>
     <div class="face">R$80</div>
     <div class="face">20%</div>
     <div class="face">30%</div>
@@ -187,13 +186,26 @@ const WHATS_NUMBER = '5547992432149';
 let hasSpun = localStorage.getItem('hasSpun') === 'true';
 let lastPrize = localStorage.getItem('lastPrize');
 
-const prizes = ['R$100', 'R$150', 'R$80', '20%', '30%', '50%'];
+const prizes = ['R$100', 'R$120', 'R$80', '20%', '30%', '50%'];
+
+/*  
+   NOVAS PROBABILIDADES:
+   R$120 → 3%
+   50% → 0.5%
+   Total = 200 chances
+*/
+
 const weighted = [
-  '20%', '20%', '20%', '20%',
-  '30%', '30%', '30%', '30%',
-  'R$80', 'R$80', 'R$80', 'R$80',
-  '50%', 'R$100', 'R$150'
+  ...Array(32).fill('20%'),
+  ...Array(32).fill('30%'),
+  ...Array(32).fill('R$80'),
+  ...Array(32).fill('R$100'),
+  ...Array(6).fill('R$120'),
+  ...Array(1).fill('50%'),
+  ...Array(40).fill('20%'),
+  ...Array(25).fill('30%')
 ];
+
 const rotations = {
   1: {x: 0, y: 0},
   2: {x: 0, y: 180},
