@@ -1,154 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Dado da Sorte - Segni di Vitta Tattoo</title>
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/808/808412.png" type="image/png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
-  body {
-    background: #000;
-    color: #FFD700;
-    text-align: center;
-    font-family: 'Anton', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-
-  h1 {
-    text-shadow: 0 0 25px #FFD700, 0 0 50px #FFD700;
-    font-size: 2.3em;
-    letter-spacing: 2px;
-    margin-top: 25px;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-  }
-
-  .dice {
-    width: 180px;
-    height: 180px;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateX(0deg) rotateY(0deg);
-    transition: transform 2s cubic-bezier(0.25, 1.3, 0.5, 1);
-  }
-
-  .face {
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    background: radial-gradient(circle, #FFD700, #b8860b);
-    border: 3px solid #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    color: #000;
-    font-weight: bold;
-  }
-
-  .face:nth-child(1) { transform: rotateY(0deg) translateZ(90px); }  
-  .face:nth-child(2) { transform: rotateY(180deg) translateZ(90px); } 
-  .face:nth-child(3) { transform: rotateY(90deg) translateZ(90px); }  
-  .face:nth-child(4) { transform: rotateY(-90deg) translateZ(90px); } 
-  .face:nth-child(5) { transform: rotateX(90deg) translateZ(90px); }  
-  .face:nth-child(6) { transform: rotateX(-90deg) translateZ(90px); } 
-
-  #message {
-    font-size: 1.5em;
-    text-shadow: 0 0 10px #FFD700;
-    margin-top: 20px;
-    min-height: 40px;
-  }
-
-  .spin-btn {
-    background: #FFD700;
-    color: #000;
-    font-size: 1.1em;
-    font-weight: bold;
-    padding: 12px 40px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 0 15px #FFD700;
-    transition: 0.2s;
-    margin-top: 20px;
-  }
-
-  .spin-btn:hover {
-    background: #e6c200;
-    box-shadow: 0 0 25px #FFD700;
-  }
-
-  #whatsappBtn {
-    display: none;
-    margin-top: 20px;
-    background: #25D366;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 1em;
-    cursor: pointer;
-    box-shadow: 0 0 15px #25D366;
-  }
-
-  #whatsappBtn:hover {
-    background: #20b857;
-  }
-
-  .alerta {
-    background: rgba(0, 0, 0, 0.95);
-    border: 2px solid #FFD700;
-    border-radius: 10px;
-    color: #FFD700;
-    padding: 25px 35px;
-    font-size: 1.2em;
-    box-shadow: 0 0 30px #FFD700;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-    z-index: 1000;
-    text-align: center;
-  }
-
-  .alerta button {
-    background: #FFD700;
-    color: #000;
-    font-weight: bold;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 8px;
-    margin-top: 15px;
-    cursor: pointer;
-    box-shadow: 0 0 10px #FFD700;
-  }
-
-  canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 999;
-  }
+  body{background:#000;color:#FFD700;text-align:center;font-family:'Anton',sans-serif;margin:0;padding:0}
+  h1{text-shadow:0 0 25px #FFD700,0 0 50px #FFD700;font-size:2.3em;letter-spacing:2px;margin-top:25px}
+  .container{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:40px}
+  .dice{width:180px;height:180px;position:relative;transform-style:preserve-3d;transform:rotateX(0deg)rotateY(0deg);transition:transform 2s cubic-bezier(.25,1.3,.5,1)}
+  .face{position:absolute;width:180px;height:180px;background:radial-gradient(circle,#FFD700,#b8860b);border:3px solid #000;display:flex;justify-content:center;align-items:center;font-size:28px;color:#000;font-weight:bold}
+  .face:nth-child(1){transform:rotateY(0deg)translateZ(90px)}
+  .face:nth-child(2){transform:rotateY(180deg)translateZ(90px)}
+  .face:nth-child(3){transform:rotateY(90deg)translateZ(90px)}
+  .face:nth-child(4){transform:rotateY(-90deg)translateZ(90px)}
+  .face:nth-child(5){transform:rotateX(90deg)translateZ(90px)}
+  .face:nth-child(6){transform:rotateX(-90deg)translateZ(90px)}
+  #message{font-size:1.5em;text-shadow:0 0 10px #FFD700;margin-top:20px;min-height:40px}
+  .spin-btn{background:#FFD700;color:#000;font-size:1.1em;font-weight:bold;padding:12px 40px;border:none;border-radius:8px;cursor:pointer;box-shadow:0 0 15px #FFD700;transition:.2s;margin-top:20px}
+  .spin-btn:hover{background:#e6c200;box-shadow:0 0 25px #FFD700}
+  #whatsappBtn{display:none;margin-top:20px;background:#25D366;color:white;border:none;padding:12px 25px;border-radius:8px;font-size:1em;cursor:pointer;box-shadow:0 0 15px #25D366}
+  #whatsappBtn:hover{background:#20b857}
+  .alerta{background:rgba(0,0,0,.95);border:2px solid #FFD700;border-radius:10px;color:#FFD700;padding:25px 35px;font-size:1.2em;box-shadow:0 0 30px #FFD700;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:none;z-index:1000;text-align:center}
+  .alerta button{background:#FFD700;color:#000;font-weight:bold;border:none;padding:10px 25px;border-radius:8px;margin-top:15px;cursor:pointer;box-shadow:0 0 10px #FFD700}
+  #counter{margin-top:15px;font-size:1em;color:#fff}
+  canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999}
 </style>
 </head>
 <body>
-
 <h1>🎲 DADO DA SORTE - BLACK FRIDAY</h1>
-
 <div class="container">
   <div class="dice" id="dice">
     <div class="face">R$100</div>
@@ -158,152 +40,243 @@
     <div class="face">30%</div>
     <div class="face">50%</div>
   </div>
-
   <p id="message"></p>
-
   <button class="spin-btn" id="spinBtn">GIRAR</button>
-
   <button id="whatsappBtn">Resgatar no WhatsApp</button>
+  <div id="counter">Carregando...</div>
 </div>
-
-<div class="alerta" id="alerta">
-  ⚠️ Apenas um giro é permitido por pessoa!<br>
-  <button onclick="fecharAlerta()">Entendido</button>
-</div>
-
+<div class="alerta" id="alerta">⚠️ Apenas um giro é permitido por pessoa!<br><button onclick="fecharAlerta()">Entendido</button></div>
 <canvas id="confetti"></canvas>
 
 <script>
-const dice = document.getElementById('dice');
-const message = document.getElementById('message');
-const spinBtn = document.getElementById('spinBtn');
-const whatsappBtn = document.getElementById('whatsappBtn');
-const alerta = document.getElementById('alerta');
-const canvas = document.getElementById('confetti');
-const ctx = canvas.getContext('2d');
+/* ============= CONFIG ============= */
+const GAS_URL = 'COLE_AQUI_O_SEU_WEBAPP_URL_DO_GAS'; // <<-- substituir pelo Web App URL do Apps Script
+const WHATS_NUMBER = '5547992432149'; // seu número
+const SPIN_STORAGE_KEY = 'dado_last_prize_v2';
+const IP_CHECK_TIMEOUT = 6000; // ms
+/* ================================== */
 
-const WHATS_NUMBER = '5547992432149';
-
-/* ---------------------------------------------------------
-   🔒 BLOQUEIO POR IP (client side)
----------------------------------------------------------- */
+const dice=document.getElementById('dice'),
+      message=document.getElementById('message'),
+      spinBtn=document.getElementById('spinBtn'),
+      whatsappBtn=document.getElementById('whatsappBtn'),
+      alerta=document.getElementById('alerta'),
+      counterEl=document.getElementById('counter'),
+      canvas=document.getElementById('confetti'),
+      ctx=canvas.getContext('2d');
 
 let userIP = null;
+let lastPrize = localStorage.getItem(SPIN_STORAGE_KEY) || null;
+let hasSpun = !!lastPrize;
 
-async function fetchIP() {
-  try {
-    const res = await fetch("https://api.ipify.org?format=json");
-    const data = await res.json();
-    userIP = data.ip;
-
-    const usedIPs = JSON.parse(localStorage.getItem("usedIPs") || "[]");
-
-    if (usedIPs.includes(userIP)) {
-      spinBtn.disabled = true;
-      alerta.style.display = "block";
-    }
-  } catch (e) {
-    console.error("Erro ao obter IP:", e);
-  }
-}
-
-/* ---------------------------------------------------------
-   🎲 PROBABILIDADES
----------------------------------------------------------- */
-
-const prizes = ['R$100', 'R$120', 'R$80', '20%', '30%', '50%'];
-
+/* ---------- Probabilidades (peso total = 200) ----------
+   counts:
+   20% -> 72 (36%)
+   30% -> 59 (29.5%)
+   R$80 -> 32 (16%)
+   R$100 -> 32 (16%)
+   R$120 -> 4 (2%)
+   50% -> 1 (0.5%)
+   total = 200
+--------------------------------------------------------- */
+const prizes = ['R$100','R$120','R$80','20%','30%','50%'];
 const weighted = [
-  ...Array(32).fill('20%'),
-  ...Array(32).fill('30%'),
+  ...Array(72).fill('20%'),
+  ...Array(59).fill('30%'),
   ...Array(32).fill('R$80'),
   ...Array(32).fill('R$100'),
-  ...Array(6).fill('R$120'),
-  ...Array(1).fill('50%'),
-  ...Array(40).fill('20%'),
-  ...Array(25).fill('30%')
+  ...Array(4).fill('R$120'),
+  ...Array(1).fill('50%')
 ];
+const rotations={1:{x:0,y:0},2:{x:0,y:180},3:{x:0,y:-90},4:{x:0,y:90},5:{x:-90,y:0},6:{x:90,y:0}};
 
-const rotations = {
-  1: {x: 0, y: 0},
-  2: {x: 0, y: 180},
-  3: {x: 0, y: -90},
-  4: {x: 0, y: 90},
-  5: {x: -90, y: 0},
-  6: {x: 90, y: 0}
-};
+/* ---------- Helpers ---------- */
+function fecharAlerta(){ alerta.style.display='none'; }
+function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
 
-function fecharAlerta() {
-  alerta.style.display = 'none';
-}
-
-function launchConfetti() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  const parts = [];
-  for (let i = 0; i < 120; i++) {
-    parts.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 2,
-      vy: Math.random() * 3 + 2,
-      size: Math.random() * 6 + 2
-    });
+/* ---------- Confetti ---------- */
+function launchConfetti(){
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const parts=[];
+  for(let i=0;i<120;i++){
+    parts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*2,vy:Math.random()*3+2,size:Math.random()*6+2});
   }
-  const start = Date.now();
-  (function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    parts.forEach(p => {
+  const start=Date.now();
+  (function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    parts.forEach(p=>{
       ctx.beginPath();
-      ctx.fillStyle = `hsl(45, 90%, ${50 + Math.random() * 20}%)`;
-      ctx.arc(p.x, p.y, p.size, 0, 2 * Math.PI);
-      ctx.fill();
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.y > canvas.height) p.y = -10;
+      ctx.fillStyle=`hsl(${45+Math.random()*20},90%,${50+Math.random()*20}%)`;
+      ctx.arc(p.x,p.y,p.size,0,2*Math.PI); ctx.fill();
+      p.x+=p.vx; p.y+=p.vy; if(p.y>canvas.height) p.y=-10;
     });
-    if (Date.now() - start < 3000) requestAnimationFrame(draw);
+    if(Date.now()-start<3000) requestAnimationFrame(draw);
   })();
 }
 
-spinBtn.addEventListener('click', () => {
-  if (!userIP) return;
+/* ---------- WhatsApp open (app then web fallback) ---------- */
+function openWhatsAppLocked(prize){
+  const msg = encodeURIComponent(`🎲 Ganhei ${prize} no Dado da Sorte do Segni di Vitta Tattoo Estúdio!`);
+  const phone = WHATS_NUMBER.replace(/\D/g,'');
+  whatsappBtn.style.display='block';
+  whatsappBtn.onclick = (e) => {
+    e.preventDefault();
+    const waApp = `whatsapp://send?phone=${phone}&text=${msg}`;
+    const waWeb = `https://wa.me/${phone}?text=${msg}`;
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if(isMobile){
+      // tenta app, se não abrir, abre web depois
+      window.open(waApp, '_blank');
+      setTimeout(()=> window.open(waWeb, '_blank'), 1200);
+    } else {
+      window.open(waWeb, '_blank');
+    }
+  };
+}
 
-  const usedIPs = JSON.parse(localStorage.getItem("usedIPs") || "[]");
+/* ---------- Fetch IP via ipify with timeout ---------- */
+async function fetchIP(){
+  try {
+    const controller = new AbortController();
+    const id = setTimeout(()=>controller.abort(), IP_CHECK_TIMEOUT);
+    const res = await fetch('https://api.ipify.org?format=json', {signal: controller.signal, cache:'no-store'});
+    clearTimeout(id);
+    const j = await res.json();
+    if(j && j.ip) return j.ip;
+    return null;
+  } catch (e) {
+    return null;
+  }
+}
 
-  if (usedIPs.includes(userIP)) {
-    alerta.style.display = 'block';
-    return;
+/* ---------- Server interactions (Apps Script) ---------- */
+// check if IP already spun
+async function serverCheck(ip){
+  try {
+    const url = `${GAS_URL}?action=check&ip=${encodeURIComponent(ip)}`;
+    const r = await fetch(url, {cache:'no-store'});
+    if(!r.ok) throw new Error('err');
+    return await r.json();
+  } catch (e) {
+    return { ok:false, error:'server-unavailable' };
+  }
+}
+
+// register spin (server-side): returns {ok:true} or {ok:false,exists:true}
+async function serverRegister(ip, prize){
+  try {
+    const r = await fetch(GAS_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({action:'spin', ip, prize})
+    });
+    if(!r.ok) throw new Error('err');
+    return await r.json();
+  } catch(e){
+    return { ok:false, error:'server-unavailable' };
+  }
+}
+
+// get counter
+async function fetchCount(){
+  try {
+    const r = await fetch(`${GAS_URL}?action=getCount`, {cache:'no-store'});
+    if(!r.ok) throw new Error('err');
+    const j = await r.json();
+    counterEl.textContent = `🔥 ${j.count||0} pessoas já giraram`;
+  } catch {
+    counterEl.textContent = '🔥 Contador indisponível';
+  }
+}
+
+/* ---------- Init: if already spun show prize and button ---------- */
+async function init(){
+  // show saved prize if exists
+  if(lastPrize){
+    hasSpun = true;
+    spinBtn.disabled = true;
+    message.textContent = `🎁 Seu prêmio foi ${lastPrize}`;
+    openWhatsAppLocked(lastPrize);
   }
 
-  usedIPs.push(userIP);
-  localStorage.setItem("usedIPs", JSON.stringify(usedIPs));
+  // try to fetch IP and check server to be safe (server is authoritative)
+  userIP = await fetchIP();
+  if(userIP){
+    const chk = await serverCheck(userIP);
+    if(chk && chk.ok && chk.exists){
+      // server says already spun -> load prize from server (best)
+      const serverPrize = chk.prize || lastPrize;
+      localStorage.setItem(SPIN_STORAGE_KEY, serverPrize);
+      lastPrize = serverPrize; hasSpun = true;
+      spinBtn.disabled = true;
+      message.textContent = `🎁 Seu prêmio foi ${serverPrize}`;
+      openWhatsAppLocked(serverPrize);
+    }
+  }
 
-  spinBtn.disabled = true;
-  message.textContent = '';
-  whatsappBtn.style.display = 'none';
+  fetchCount();
+  setInterval(fetchCount, 5000);
+}
+init();
 
-  const prize = weighted[Math.floor(Math.random() * weighted.length)];
+/* ---------- Spin button ---------- */
+spinBtn.addEventListener('click', async ()=>{
+  // prevent multi click
+  if(hasSpun){ alerta.style.display='block'; return; }
+
+  spinBtn.disabled = true; message.textContent=''; whatsappBtn.style.display='none';
+  // ensure we have IP (try again)
+  if(!userIP) userIP = await fetchIP();
+
+  // If we have server, double-check
+  if(userIP){
+    const chk = await serverCheck(userIP);
+    if(chk && chk.ok && chk.exists){
+      // server says blocked
+      localStorage.setItem(SPIN_STORAGE_KEY, chk.prize || 'Bloqueado');
+      lastPrize = localStorage.getItem(SPIN_STORAGE_KEY);
+      hasSpun = true;
+      message.textContent = `🎁 Seu prêmio foi ${lastPrize}`;
+      openWhatsAppLocked(lastPrize);
+      return;
+    }
+  }
+
+  // choose prize from weighted array
+  const prize = weighted[Math.floor(Math.random()*weighted.length)];
   const idx = prizes.indexOf(prize) + 1;
   const r = rotations[idx] || rotations[3];
-
   dice.style.transform = `rotateX(${r.x + 1440}deg) rotateY(${r.y + 1440}deg)`;
 
-  setTimeout(() => {
+  // after animation, register on server and show prize
+  setTimeout(async ()=>{
+    // try server registration
+    let registered = false;
+    if(userIP){
+      const res = await serverRegister(userIP, prize);
+      if(res && res.ok){
+        registered = true;
+      } else if(res && res.exists){
+        // server says already exists (race) -> use server prize
+        const srvPrize = res.prize || prize;
+        localStorage.setItem(SPIN_STORAGE_KEY, srvPrize);
+        lastPrize = srvPrize; hasSpun = true;
+        message.textContent = `🎁 Seu prêmio foi ${srvPrize}`;
+        openWhatsAppLocked(srvPrize);
+        launchConfetti();
+        fetchCount();
+        return;
+      }
+    }
+    // fallback: still save locally even if server unavailable (prevents double local spin)
+    localStorage.setItem(SPIN_STORAGE_KEY, prize);
+    lastPrize = prize; hasSpun = true;
     message.textContent = `🎉 Parabéns! Você ganhou ${prize} de desconto!!`;
-
-    // 🔒 mensagem travada (não editável)
-    const msg = encodeURIComponent(`🎲 Ganhei ${prize} no Dado da Sorte do Segni di Vitta Tattoo!`);
-    whatsappBtn.onclick = () =>
-      window.location.href = `whatsapp://send?phone=${WHATS_NUMBER}&text=${msg}`;
-
-    whatsappBtn.style.display = 'block';
+    openWhatsAppLocked(prize);
     launchConfetti();
+    fetchCount();
   }, 2100);
 });
-
-fetchIP();
 </script>
-
 </body>
 </html>
