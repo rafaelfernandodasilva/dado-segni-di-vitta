@@ -183,25 +183,43 @@ const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
 
 const WHATS_NUMBER = '5547992432149';
-let hasSpun = localStorage.getItem('hasSpun') === 'true';
-let lastPrize = localStorage.getItem('lastPrize');
+
+/* -----------------------------------------
+   🔒 BLOQUEIO POR IP (client-side)
+------------------------------------------ */
+
+let userIP = null;
+
+async function fetchIP() {
+  try {
+    const res = await fetch("https://api.ipify.org?format=json");
+    const data = await res.json();
+    userIP = data.ip;
+
+    const usedIPs = JSON.parse(localStorage.getItem("usedIPs") || "[]");
+
+    if (usedIPs.includes(userIP)) {
+      spinBtn.disabled = true;
+      alerta.style.display = "block";
+    }
+  } catch (e) {
+    console.error("Erro ao obter IP:", e);
+  }
+}
+
+/* -----------------------------------------
+   PROBABILIDADES
+------------------------------------------ */
 
 const prizes = ['R$100', 'R$120', 'R$80', '20%', '30%', '50%'];
-
-/*  
-   NOVAS PROBABILIDADES:
-   R$120 → 3%
-   50% → 0.5%
-   Total = 200 chances
-*/
 
 const weighted = [
   ...Array(32).fill('20%'),
   ...Array(32).fill('30%'),
   ...Array(32).fill('R$80'),
   ...Array(32).fill('R$100'),
-  ...Array(6).fill('R$120'),
-  ...Array(1).fill('50%'),
+  ...Array(6).fill('R$120'), // 3%
+  ...Array(1).fill('50%'),   // 0.5%
   ...Array(40).fill('20%'),
   ...Array(25).fill('30%')
 ];
@@ -248,47 +266,39 @@ function launchConfetti() {
   })();
 }
 
-function init() {
-  if (hasSpun) {
-    spinBtn.disabled = true;
-    alerta.style.display = 'block';
-    if (lastPrize) {
-      message.textContent = `🎁 Seu prêmio foi ${lastPrize} de desconto!`;
-      const msg = encodeURIComponent(`🎲 Acabei de girar o Dado da Sorte do Segni di Vitta Tattoo Estúdio e ganhei ${lastPrize} de desconto!`);
-      whatsappBtn.onclick = () => window.open(`https://wa.me/${WHATS_NUMBER}?text=${msg}`, '_blank');
-      whatsappBtn.style.display = 'block';
-    }
-  }
-}
-
 spinBtn.addEventListener('click', () => {
-  if (hasSpun) {
+  if (!userIP) return;
+
+  const usedIPs = JSON.parse(localStorage.getItem("usedIPs") || "[]");
+
+  if (usedIPs.includes(userIP)) {
     alerta.style.display = 'block';
     return;
   }
 
-  hasSpun = true;
-  localStorage.setItem('hasSpun', 'true');
+  usedIPs.push(userIP);
+  localStorage.setItem("usedIPs", JSON.stringify(usedIPs));
+
   spinBtn.disabled = true;
   message.textContent = '';
   whatsappBtn.style.display = 'none';
 
   const prize = weighted[Math.floor(Math.random() * weighted.length)];
-  localStorage.setItem('lastPrize', prize);
   const idx = prizes.indexOf(prize) + 1;
   const r = rotations[idx] || rotations[3];
+
   dice.style.transform = `rotateX(${r.x + 1440}deg) rotateY(${r.y + 1440}deg)`;
 
   setTimeout(() => {
     message.textContent = `🎉 Parabéns! Você ganhou ${prize} de desconto!!`;
-    const msg = encodeURIComponent(`🎲 Acabei de girar o Dado da Sorte do Segni di Vitta Tattoo Estúdio e ganhei ${prize} de desconto na minha tatuagem!`);
+    const msg = encodeURIComponent(`🎲 Ganhei ${prize} no Dado da Sorte do Segni di Vitta Tattoo!`);
     whatsappBtn.onclick = () => window.open(`https://wa.me/${WHATS_NUMBER}?text=${msg}`, '_blank');
     whatsappBtn.style.display = 'block';
     launchConfetti();
   }, 2100);
 });
 
-init();
+fetchIP();
 </script>
 
 </body>
