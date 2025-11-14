@@ -1,148 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Dado da Sorte - Segni di Vitta Tattoo</title>
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/808/808412.png" type="image/png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-  body {
-    background: #000;
-    color: #FFD700;
-    text-align: center;
-    font-family: 'Anton', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-
-  h1 {
-    text-shadow: 0 0 25px #FFD700, 0 0 50px #FFD700;
-    font-size: 2.3em;
-    letter-spacing: 2px;
-    margin-top: 25px;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-  }
-
-  .dice {
-    width: 180px;
-    height: 180px;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateX(0deg) rotateY(0deg);
-    transition: transform 2s cubic-bezier(0.25, 1.3, 0.5, 1);
-  }
-
-  .face {
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    background: radial-gradient(circle, #FFD700, #b8860b);
-    border: 3px solid #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    color: #000;
-    font-weight: bold;
-  }
-
+  body { background: #000; color: #FFD700; text-align: center; font-family: 'Anton', sans-serif; margin: 0; padding: 0; }
+  h1 { text-shadow: 0 0 25px #FFD700, 0 0 50px #FFD700; font-size: 2.3em; letter-spacing: 2px; margin-top: 25px; }
+  .container { display:flex; flex-direction:column; align-items:center; justify-content:center; margin-top:40px; }
+  .dice { width:180px; height:180px; position:relative; transform-style:preserve-3d; transform:rotateX(0deg) rotateY(0deg); transition: transform 2s cubic-bezier(0.25,1.3,0.5,1); }
+  .face { position:absolute; width:180px; height:180px; background: radial-gradient(circle, #FFD700, #b8860b); border:3px solid #000; display:flex; justify-content:center; align-items:center; font-size:28px; color:#000; font-weight:bold; }
   .face:nth-child(1) { transform: rotateY(0deg) translateZ(90px); }  
   .face:nth-child(2) { transform: rotateY(180deg) translateZ(90px); } 
   .face:nth-child(3) { transform: rotateY(90deg) translateZ(90px); }  
   .face:nth-child(4) { transform: rotateY(-90deg) translateZ(90px); } 
   .face:nth-child(5) { transform: rotateX(90deg) translateZ(90px); }  
   .face:nth-child(6) { transform: rotateX(-90deg) translateZ(90px); } 
-
-  #message {
-    font-size: 1.5em;
-    text-shadow: 0 0 10px #FFD700;
-    margin-top: 20px;
-    min-height: 40px;
-  }
-
-  .spin-btn {
-    background: #FFD700;
-    color: #000;
-    font-size: 1.1em;
-    font-weight: bold;
-    padding: 12px 40px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 0 15px #FFD700;
-    transition: 0.2s;
-    margin-top: 20px;
-  }
-
-  .spin-btn:hover {
-    background: #e6c200;
-    box-shadow: 0 0 25px #FFD700;
-  }
-
-  #whatsappBtn {
-    display: none;
-    margin-top: 20px;
-    background: #25D366;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 1em;
-    cursor: pointer;
-    box-shadow: 0 0 15px #25D366;
-  }
-
-  #whatsappBtn:hover {
-    background: #20b857;
-  }
-
-  .alerta {
-    background: rgba(0, 0, 0, 0.95);
-    border: 2px solid #FFD700;
-    border-radius: 10px;
-    color: #FFD700;
-    padding: 25px 35px;
-    font-size: 1.2em;
-    box-shadow: 0 0 30px #FFD700;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-    z-index: 1000;
-    text-align: center;
-  }
-
-  .alerta button {
-    background: #FFD700;
-    color: #000;
-    font-weight: bold;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 8px;
-    margin-top: 15px;
-    cursor: pointer;
-    box-shadow: 0 0 10px #FFD700;
-  }
-
-  canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 999;
-  }
+  #message { font-size:1.5em; text-shadow:0 0 10px #FFD700; margin-top:20px; min-height:40px; }
+  .spin-btn { background:#FFD700; color:#000; font-size:1.1em; font-weight:bold; padding:12px 40px; border:none; border-radius:8px; cursor:pointer; box-shadow:0 0 15px #FFD700; transition:0.2s; margin-top:20px; }
+  .spin-btn:hover { background:#e6c200; box-shadow:0 0 25px #FFD700; }
+  #whatsappBtn { display:none; margin-top:20px; background:#25D366; color:white; border:none; padding:12px 25px; border-radius:8px; font-size:1em; cursor:pointer; box-shadow:0 0 15px #25D366; }
+  #whatsappBtn:hover { background:#20b857; }
+  .alerta { background: rgba(0,0,0,0.95); border:2px solid #FFD700; border-radius:10px; color:#FFD700; padding:25px 35px; font-size:1.2em; box-shadow:0 0 30px #FFD700; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); display:none; z-index:1000; text-align:center; }
+  .alerta button { background:#FFD700; color:#000; font-weight:bold; border:none; padding:10px 25px; border-radius:8px; margin-top:15px; cursor:pointer; box-shadow:0 0 10px #FFD700; }
+  canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+  .small-note { font-family: sans-serif; font-size: 0.9rem; color:#ccc; margin-top:10px; }
 </style>
 </head>
 <body>
@@ -164,16 +49,26 @@
   <button class="spin-btn" id="spinBtn">GIRAR</button>
 
   <button id="whatsappBtn">Resgatar no WhatsApp</button>
+  <div class="small-note">* Apenas 1 giro por pessoa (validez: 365 dias)</div>
 </div>
 
 <div class="alerta" id="alerta">
-  ⚠️ Apenas um giro é permitido por pessoa!<br>
+  ⚠️ Você já usou seu giro!<br>
   <button onclick="fecharAlerta()">Entendido</button>
 </div>
 
 <canvas id="confetti"></canvas>
 
 <script>
+/* -----------------------
+   CONFIGURAÇÃO
+   ----------------------- */
+const WHATS_NUMBER = '5547992432149';
+const BLOCK_STORAGE_KEY = 'dado_used_records_v1'; // chave para localStorage
+const BLOCK_EXP_DAYS = 365; // quantos dias manter o bloqueio
+const FAILSAFE_FINGERPRINT = true; // se IP falhar, usar fingerprint
+/* ----------------------- */
+
 const dice = document.getElementById('dice');
 const message = document.getElementById('message');
 const spinBtn = document.getElementById('spinBtn');
@@ -182,73 +77,174 @@ const alerta = document.getElementById('alerta');
 const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
 
-const WHATS_NUMBER = '5547992432149';
-
-/* -----------------------------------------
-   🔒 BLOQUEIO POR IP (client-side)
------------------------------------------- */
-
 let userIP = null;
+let userFingerprint = null;
 
-async function fetchIP() {
+/* -----------------------
+   UTIL: hash simples (djb2)
+   ----------------------- */
+function hashString(str) {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) + str.charCodeAt(i); /* hash * 33 + c */
+    hash = hash & 0xFFFFFFFF;
+  }
+  return (hash >>> 0).toString(16);
+}
+
+/* -----------------------
+   UTIL: cookies (backup)
+   ----------------------- */
+function setCookie(name, value, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + (days*24*60*60*1000));
+  document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=Lax`;
+}
+function getCookie(name) {
+  const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return v ? v.pop() : '';
+}
+
+/* -----------------------
+   Fingerprint leve
+   ----------------------- */
+function makeFingerprint() {
+  const nav = navigator;
+  const parts = [
+    nav.userAgent || '',
+    nav.language || '',
+    navigator.platform || '',
+    screen.width + 'x' + screen.height,
+    screen.colorDepth || '',
+    Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+    (navigator.hardwareConcurrency || ''),
+    (navigator.deviceMemory || '')
+  ];
+  return hashString(parts.join('||'));
+}
+
+/* -----------------------
+   Gerenciar registros de bloqueio (localStorage)
+   Estrutura: { records: [{id: "ip_or_fp", type: "ip"|"fp"|"cookie", ts: 123456789}], expDays: N }
+   ----------------------- */
+function loadRecords() {
   try {
-    const res = await fetch("https://api.ipify.org?format=json");
-    const data = await res.json();
-    userIP = data.ip;
-
-    const usedIPs = JSON.parse(localStorage.getItem("usedIPs") || "[]");
-
-    if (usedIPs.includes(userIP)) {
-      spinBtn.disabled = true;
-      alerta.style.display = "block";
-    }
+    const raw = localStorage.getItem(BLOCK_STORAGE_KEY);
+    if (!raw) return { records: [], expDays: BLOCK_EXP_DAYS };
+    const parsed = JSON.parse(raw);
+    // remove expirados
+    const cutoff = Date.now() - (parsed.expDays || BLOCK_EXP_DAYS) * 24*60*60*1000;
+    parsed.records = (parsed.records || []).filter(r => r.ts >= cutoff);
+    return parsed;
   } catch (e) {
-    console.error("Erro ao obter IP:", e);
+    return { records: [], expDays: BLOCK_EXP_DAYS };
   }
 }
 
-/* -----------------------------------------
-   PROBABILIDADES
------------------------------------------- */
-
-const prizes = ['R$100', 'R$120', 'R$80', '20%', '30%', '50%'];
-
-const weighted = [
-  ...Array(32).fill('20%'),
-  ...Array(32).fill('30%'),
-  ...Array(32).fill('R$80'),
-  ...Array(32).fill('R$100'),
-  ...Array(6).fill('R$120'), // 3%
-  ...Array(1).fill('50%'),   // 0.5%
-  ...Array(40).fill('20%'),
-  ...Array(25).fill('30%')
-];
-
-const rotations = {
-  1: {x: 0, y: 0},
-  2: {x: 0, y: 180},
-  3: {x: 0, y: -90},
-  4: {x: 0, y: 90},
-  5: {x: -90, y: 0},
-  6: {x: 90, y: 0}
-};
-
-function fecharAlerta() {
-  alerta.style.display = 'none';
+function saveRecords(obj) {
+  try {
+    localStorage.setItem(BLOCK_STORAGE_KEY, JSON.stringify(obj));
+    // disparar evento para outras abas
+    localStorage.setItem(BLOCK_STORAGE_KEY + '_last_update', Date.now());
+  } catch (e) {
+    console.error('Erro salvando records', e);
+  }
 }
 
+function registerRecord(id, type='fp') {
+  const db = loadRecords();
+  db.records.push({ id, type, ts: Date.now() });
+  saveRecords(db);
+  // set cookie backup
+  setCookie('dado_used_backup', id, BLOCK_EXP_DAYS);
+}
+
+/* -----------------------
+   Verifica se id já registrado
+   ----------------------- */
+function isBlockedId(id) {
+  const db = loadRecords();
+  return db.records.some(r => r.id === id);
+}
+
+/* -----------------------
+   Tenta obter IP via ipify (CORS)
+   ----------------------- */
+async function fetchIP() {
+  try {
+    // ping ipify
+    const res = await fetch('https://api.ipify.org?format=json', {cache: 'no-store'});
+    if (!res.ok) throw new Error('ip fetch failed');
+    const j = await res.json();
+    userIP = j.ip;
+  } catch (e) {
+    console.warn('Não foi possível obter IP (fallback para fingerprint):', e);
+    userIP = null;
+  }
+}
+
+/* -----------------------
+   Inicialização e validação
+   ----------------------- */
+async function initBlock() {
+  userFingerprint = makeFingerprint();
+
+  // check cookie backup
+  const cookieBackup = getCookie('dado_used_backup');
+
+  // try to fetch IP (non-blocking)
+  await fetchIP();
+
+  // if we have IP and it's registered => bloquear
+  if (userIP && isBlockedId('ip:' + userIP)) {
+    blockUI();
+    return;
+  }
+
+  // check fingerprint
+  if (isBlockedId('fp:' + userFingerprint)) {
+    blockUI();
+    return;
+  }
+
+  // check cookie backup
+  if (cookieBackup && (isBlockedId('ip:' + cookieBackup) || isBlockedId('fp:' + cookieBackup) || cookieBackup === userFingerprint)) {
+    blockUI();
+    return;
+  }
+
+  // if ip is available but cookie says ip used, block
+  if (cookieBackup && userIP && cookieBackup === userIP) {
+    blockUI();
+    return;
+  }
+
+  // otherwise allow
+  enableUI();
+}
+
+/* -----------------------
+   UI helpers
+   ----------------------- */
+function blockUI() {
+  spinBtn.disabled = true;
+  alerta.style.display = 'block';
+  whatsappBtn.style.display = 'none';
+}
+
+function enableUI() {
+  spinBtn.disabled = false;
+}
+
+/* -----------------------
+   confetti (mesma função)
+   ----------------------- */
 function launchConfetti() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   const parts = [];
   for (let i = 0; i < 120; i++) {
-    parts.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 2,
-      vy: Math.random() * 3 + 2,
-      size: Math.random() * 6 + 2
-    });
+    parts.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 2, vy: Math.random() * 3 + 2, size: Math.random() * 6 + 2 });
   }
   const start = Date.now();
   (function draw() {
@@ -266,29 +262,69 @@ function launchConfetti() {
   })();
 }
 
-spinBtn.addEventListener('click', () => {
-  if (!userIP) return;
+/* -----------------------
+   Probabilidades e rotações
+   ----------------------- */
+const prizes = ['R$100', 'R$120', 'R$80', '20%', '30%', '50%'];
+const weighted = [
+  ...Array(32).fill('20%'),
+  ...Array(32).fill('30%'),
+  ...Array(32).fill('R$80'),
+  ...Array(32).fill('R$100'),
+  ...Array(6).fill('R$120'),
+  ...Array(1).fill('50%'),
+  ...Array(40).fill('20%'),
+  ...Array(25).fill('30%')
+];
+const rotations = {
+  1: {x: 0, y: 0},
+  2: {x: 0, y: 180},
+  3: {x: 0, y: -90},
+  4: {x: 0, y: 90},
+  5: {x: -90, y: 0},
+  6: {x: 90, y: 0}
+};
 
-  const usedIPs = JSON.parse(localStorage.getItem("usedIPs") || "[]");
+/* -----------------------
+   Função principal do botão
+   ----------------------- */
+spinBtn.addEventListener('click', async () => {
+  // safety: desabilita imediatamente p/ evitar cliques múltiplos
+  spinBtn.disabled = true;
+  message.textContent = '';
 
-  if (usedIPs.includes(userIP)) {
-    alerta.style.display = 'block';
+  // Se não tiver IP ainda, tenta buscar (para registrar ip)
+  if (!userFingerprint) userFingerprint = makeFingerprint();
+  if (!userIP) await fetchIP();
+
+  // Verifica novamente (race conditions)
+  if (userIP && isBlockedId('ip:' + userIP)) {
+    blockUI();
+    return;
+  }
+  if (isBlockedId('fp:' + userFingerprint)) {
+    blockUI();
     return;
   }
 
-  usedIPs.push(userIP);
-  localStorage.setItem("usedIPs", JSON.stringify(usedIPs));
+  // Registrar: prioriza IP, senão registra fingerprint
+  if (userIP) {
+    registerRecord('ip:' + userIP, 'ip');
+    // também grava cookie backup com ip
+    setCookie('dado_used_backup', 'ip:' + userIP, BLOCK_EXP_DAYS);
+  } else {
+    // fallback para fingerprint
+    registerRecord('fp:' + userFingerprint, 'fp');
+    setCookie('dado_used_backup', 'fp:' + userFingerprint, BLOCK_EXP_DAYS);
+  }
 
-  spinBtn.disabled = true;
-  message.textContent = '';
-  whatsappBtn.style.display = 'none';
-
+  // animar dado
   const prize = weighted[Math.floor(Math.random() * weighted.length)];
   const idx = prizes.indexOf(prize) + 1;
   const r = rotations[idx] || rotations[3];
-
   dice.style.transform = `rotateX(${r.x + 1440}deg) rotateY(${r.y + 1440}deg)`;
 
+  // mostrar resultado depois da animação
   setTimeout(() => {
     message.textContent = `🎉 Parabéns! Você ganhou ${prize} de desconto!!`;
     const msg = encodeURIComponent(`🎲 Ganhei ${prize} no Dado da Sorte do Segni di Vitta Tattoo!`);
@@ -298,7 +334,33 @@ spinBtn.addEventListener('click', () => {
   }, 2100);
 });
 
-fetchIP();
+/* -----------------------
+   Storage event: se outra aba registrou, bloquear aqui também
+   ----------------------- */
+window.addEventListener('storage', (e) => {
+  if (e.key === BLOCK_STORAGE_KEY + '_last_update') {
+    // re-carrega e verifica
+    const db = loadRecords();
+    if (userIP && db.records.some(r => r.id === 'ip:' + userIP)) {
+      blockUI();
+    }
+    if (userFingerprint && db.records.some(r => r.id === 'fp:' + userFingerprint)) {
+      blockUI();
+    }
+  }
+});
+
+/* -----------------------
+   Executa inicialização
+   ----------------------- */
+initBlock();
+
+/* -----------------------
+   Função fechar alerta
+   ----------------------- */
+function fecharAlerta() {
+  alerta.style.display = 'none';
+}
 </script>
 
 </body>
